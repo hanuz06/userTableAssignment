@@ -12,12 +12,12 @@ public class UserDaoJDBCImpl implements UserDao {
     Util worker = new Util();
     Connection connection = worker.getConnection();
 
-    public UserDaoJDBCImpl() throws SQLException {
+    public UserDaoJDBCImpl() {
     }
 
     public void createUsersTable() {
         sql = "CREATE TABLE IF NOT EXISTS users (\n" +
-                "  id BIGINT NOT NULL AUTO_INCREMENT,\n" +
+                "  id BIGINT(20) NOT NULL AUTO_INCREMENT,\n" +
                 "  name VARCHAR(64) NOT NULL,\n" +
                 "  lastName VARCHAR(64) NOT NULL,\n" +
                 "  age TINYINT NOT NULL,\n" +
@@ -47,7 +47,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
-            preparedStatement.setByte(3, (byte)age);
+            preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,10 +55,11 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        sql = "DELETE FROM users where id=id;";
+        sql = "DELETE FROM users where id=?;";
 
-        try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
