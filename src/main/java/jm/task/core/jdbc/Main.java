@@ -8,21 +8,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
-    private static final String testName = "Ivan";
-    private static final String testLastName = "Ivanov";
-    private static final byte testAge = 5;
-    private static final String testName1 = "Peter";
-    private static final String testLastName1 = "Petrov";
-    private static final byte testAge1 = 23;
-    private static final String testName2 = "Jina";
-    private static final String testLastName2 = "Yoon";
-    private static final byte testAge2 = 17;
-    private static final String testName3 = "Mary";
-    private static final String testLastName3 = "Kim";
-    private static final byte testAge3 = 42;
-
-    public Main() {
-    }
+    private static String testName = "Ivan";
+    private static String testLastName = "Ivanov";
+    private static byte testAge = 5;
+    private static String testName1 = "Peter";
+    private static String testLastName1 = "Petrov";
+    private static byte testAge1 = 23;
+    private static String testName2 = "Jina";
+    private static String testLastName2 = "Yoon";
+    private static byte testAge2 = 17;
+    private static String testName3 = "Mary";
+    private static String testLastName3 = "Kim";
+    private static byte testAge3 = 42;
 
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserServiceImpl();

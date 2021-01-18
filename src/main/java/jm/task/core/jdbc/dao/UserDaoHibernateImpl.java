@@ -19,14 +19,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Session session = Util.getSessionFactory().openSession();
         try {
             tx = session.beginTransaction();
-            sql = "CREATE TABLE IF NOT EXISTS users (\n" +
-                    "  id BIGINT(20) NOT NULL AUTO_INCREMENT,\n" +
-                    "  name VARCHAR(64) NOT NULL,\n" +
-                    "  last_name VARCHAR(64) NOT NULL,\n" +
-                    "  age TINYINT NOT NULL,\n" +
-                    "  PRIMARY KEY (id),\n" +
-                    "  UNIQUE INDEX id_UNIQUE (id ASC));";
-            session.createSQLQuery(sql).executeUpdate();
+            session.createSQLQuery("CREATE TABLE IF NOT EXISTS users (id BIGINT(20) NOT NULL AUTO_INCREMENT, name VARCHAR(64) NOT NULL,last_name VARCHAR(64) NOT NULL,age TINYINT NOT NULL, PRIMARY KEY (id), UNIQUE INDEX id_UNIQUE (id ASC))").executeUpdate();
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
@@ -67,6 +60,7 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = new User(name, last_name, age);
             session.save(user);
             tx.commit();
+            session.flush();
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();

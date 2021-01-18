@@ -1,6 +1,5 @@
 package jm.task.core.jdbc.util;
 
-import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,9 +12,9 @@ import java.util.Properties;
 
 public class Util {
     // реализуйте настройку соединения с БД
-    private static final String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false";
+    private static String USERNAME = "root";
+    private static String PASSWORD = "root";
 
     private Connection connection;
 
